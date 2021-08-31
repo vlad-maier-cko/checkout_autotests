@@ -1,0 +1,23 @@
+{
+    "mainURL": "https://api.sandbox.checkout.com",
+    "authorization": "sk_test_a908e452-dd30-4e7a-85ba-d7410e956531",
+    "contentType": "application/json",
+    "paymentBody": {
+      "amount": 200,
+      "currency": "EGP",
+      "source": {
+        "type": "fawry",
+        "description": "Fawry Demo Payment",
+        "customer_mobile": "01058375055",
+        "customer_email": "bruce@wayne-enterprises.com",
+        "products": [
+          {
+            "product_id": "0123456789",
+            "quantity": 1,
+            "price": 200,
+            "description": "Fawry Demo Product"
+          }
+        ]
+      }
+    }
+}
