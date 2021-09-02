@@ -10,55 +10,50 @@ var reference_number = null;
 describe("Test a different flow of refunding a payment with the Fawry payment method", function () {
   it("tries to refund a pending and canceled payment", async function () {
     payment_id = await fawryRequests.createPayment();
-    console.log("Payment ID: "+payment_id);
+    //console.log("Payment ID: "+payment_id);
 
     console.log("Check to refund the pending payment");
 
-    request
+    const response = await request
     .post( "/payments/"+payment_id+"/refunds" )
-    .set({ "Authorization": testParameters.authorization })
-    .expect(403);
+    .set({ "Authorization": testParameters.authorization });
+
+    expect(response.status).to.eql(403);
 
     reference_number = await fawryRequests.getPaymentDetails(payment_id);
-    console.log("Ref number: "+reference_number);
+    //console.log("Ref number: "+reference_number);
 
     console.log("Check to refund the canceled payment");
+    await fawryRequests.approve_cancelPayment(reference_number, "/cancellation")
+
     const response1 = await request
-    .put("/fawry/payments/"+reference_number+"/cancellation")
-    .set({ "Authorization": testParameters.authorization, "Content-Type": testParameters.contentType });
-
-    expect(response1.status).to.eql(200);
-
-    request
     .post( "/payments/"+payment_id+"/refunds" )
-    .set({ "Authorization": testParameters.authorization })
-    .expect(403);
+    .set({ "Authorization": testParameters.authorization });
+
+    expect(response1.status).to.eql(403);
   });
 
-  /*it("tries to refund more amount than it is and normal refunding", async function () {
+ it("tries to refund more amount than it is and normal refunding", async function () {
     payment_id = await fawryRequests.createPayment();
     console.log("Payment ID: "+payment_id);
 
     reference_number = await fawryRequests.getPaymentDetails(payment_id);
     console.log("Ref number: "+reference_number);
   
-    const response = await request
-    .put("/fawry/payments/"+reference_number+"/approval")
-    .set({ "Authorization": testParameters.authorization, "Content-Type": testParameters.contentType })
-
-    expect(response.status).to.eql(200);
+    await fawryRequests.approve_cancelPayment(reference_number, "/approval")
 
     console.log("Check to refund more amount than it is");
-
-    request
+    const response = await request
     .post( "/payments/"+payment_id+"/refunds" )
     .set({ "Authorization": testParameters.authorization })
-    .send({ "amount": testParameters.paymentBody.amount+1 })
-    .expect(422)
-    .expect((res) => {
-    console.log("!"+res.body+"!")
-    });
-
+    .send({ "amount": testParameters.paymentBody.amount+1 });
+    expect(response.status).to.eql(422);
+  
+    console.log("Check to refund the payment");
+    const response1 = await request
+    .post( "/payments/"+payment_id+"/refunds" )
+    .set({ "Authorization": testParameters.authorization });
+  
+    expect(response1.status).to.eql(202);
   });
-*/
 });
