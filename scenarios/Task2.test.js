@@ -10,7 +10,7 @@ describe("Test a successful flow of requesting and capturing a payment with the 
   it("should request a payment", async function () {
       const response = await request
         .post("/payments")
-        .set({ 'Authorization': testParameters.authorization, 'Content-Type': testParameters.contentType })
+        .set({ "Authorization": testParameters.authorization, "Content-Type": testParameters.contentType })
         .send(testParameters.paymentBody);
   
       expect(response.status).to.eql(202);
@@ -26,7 +26,7 @@ describe("Test a successful flow of requesting and capturing a payment with the 
     it("takes detail of payment", async function () {
       const response = await request
         .get("/payments/"+payment_id)
-        .set({ 'Authorization': testParameters.authorization, 'Content-Type': testParameters.contentType })
+        .set({ "Authorization": testParameters.authorization, "Content-Type": testParameters.contentType })
   
       expect(response.status).to.eql(200);
 
@@ -40,7 +40,7 @@ describe("Test a successful flow of requesting and capturing a payment with the 
     it("should approve the payment", async function () {
       const response = await request
         .put("/fawry/payments/"+reference_number+"/approval")
-        .set({ 'Authorization': testParameters.authorization, 'Content-Type': testParameters.contentType })
+        .set({ "Authorization": testParameters.authorization, "Content-Type": testParameters.contentType })
 
       expect(response.status).to.eql(200);
     });
@@ -48,7 +48,7 @@ describe("Test a successful flow of requesting and capturing a payment with the 
     it("confirms approval status", async function () {
       const response = await request
         .get("/payments/"+payment_id)
-        .set({ 'Authorization': testParameters.authorization, 'Content-Type': testParameters.contentType })
+        .set({ "Authorization": testParameters.authorization, "Content-Type": testParameters.contentType })
   
       expect(response.status).to.eql(200);
       expect(response.body.status).to.eql("Captured");
