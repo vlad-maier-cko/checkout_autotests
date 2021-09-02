@@ -1,14 +1,11 @@
-How to run the test of Task 2.
-
-Pre-condition:
-User can set up the latest versions of SuperTest, Mocha, and Chai libraries with the following command
-
-npm install --save supertest mocha chai
-
 Steps:
 1. Open folder with project
-2. Run next command:
+2a. Run next command for particular test:
 
 npx mocha ./scenarios/Task2.test.js
+
+2b. Run next command for all tests:
+
+npm test
 
 3. Test runs
