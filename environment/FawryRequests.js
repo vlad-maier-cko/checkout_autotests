@@ -6,7 +6,7 @@ module.exports = {
     createPayment: async function(){
         const response = await request
         .post("/payments")
-        .set({ 'Authorization': testParameters.authorization, 'Content-Type': testParameters.contentType })
+        .set({ "Authorization": testParameters.authorization, "Content-Type": testParameters.contentType })
         .send(testParameters.paymentBody)
         .expect(202);
 
@@ -15,7 +15,7 @@ module.exports = {
     getPaymentDetails: async function(paymentID){
         const responseGet = await request
         .get("/payments/"+paymentID)
-        .set({ 'Authorization': testParameters.authorization, 'Content-Type': testParameters.contentType })
+        .set({ "Authorization": testParameters.authorization, "Content-Type": testParameters.contentType })
         .expect(200);
 
         return responseGet.body.source.reference_number;

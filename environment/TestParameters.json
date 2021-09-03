@@ -3,7 +3,7 @@
     "authorization": "sk_test_a908e452-dd30-4e7a-85ba-d7410e956531",
     "contentType": "application/json",
     "paymentBody": {
-      "amount": 34,
+      "amount": 200,
       "currency": "EGP",
       "source": {
         "type": "fawry",
@@ -14,7 +14,7 @@
           {
             "product_id": "0123456789",
             "quantity": 1,
-            "price": 34,
+            "price": 200,
             "description": "Fawry Demo Product"
           }
         ]
