@@ -1,0 +1,52 @@
+type: object
+required:
+- id
+- status
+- customer
+- _links
+properties:
+  id:
+    type: string
+    pattern: "^(.*)$"
+  status:
+    type: string
+    pattern: "^(.*)$"
+  customer:
+    type: object
+    required:
+      - id
+    properties:
+      id:
+        type: string
+        pattern: "^(.*)$"
+  _links:
+    type: object
+    required:
+      - self
+      - approve
+      - cancel
+    properties:
+      self:
+        type: object
+        required:
+        - href
+        properties:
+          href:
+            type: string
+            pattern: "^(.*)$"
+      approve:
+        type: object
+        required:
+        - href
+        properties:
+          href:
+            type: string
+            pattern: "^(.*)$"
+      cancel:
+        type: object
+        required:
+        - href
+        properties:
+          href:
+            type: string
+            pattern: "^(.*)$"

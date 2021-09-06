@@ -1,0 +1,84 @@
+type: object
+required:
+- id
+- requested_on
+- source
+- amount
+- currency
+- payment_type
+- status
+- risk
+- customer
+- _links
+properties:
+    id:
+      type: string
+    requested_on:
+      type: string
+    source:
+      type: object
+      required:
+      - type
+      - description
+      - reference_number
+      properties:
+        type:
+          type: string
+        description:
+          type: string
+        reference_number:
+          type: string
+    amount:
+      type: integer
+    currency:
+      type: string
+    payment_type:
+      type: string
+    status:
+      type: string
+      pattern: "^(.*)$"
+    risk:
+      type: object
+      required:
+      - flagged
+      properties:
+        flagged:
+          type: boolean
+    customer:
+      type: object
+      required:
+      - id
+      properties:
+        id:
+          type: string
+    _links:
+      type: object
+      required:
+      - self
+      - approve
+      - cancel
+      properties:
+        self:
+          type: object
+          required:
+          - href
+          properties:
+            href:
+              type: string
+              pattern: "^(.*)$"
+        approve:
+          type: object
+          required:
+          - href
+          properties:
+            href:
+              type: string
+              pattern: "^(.*)$"
+        cancel:
+          type: object
+          required:
+          - href
+          properties:
+            href:
+              type: string
+              pattern: "^(.*)$"

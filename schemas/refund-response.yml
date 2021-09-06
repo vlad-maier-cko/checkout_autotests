@@ -1,0 +1,20 @@
+type: object
+required:
+- action_id
+- _links
+properties:
+  action_id:
+    type: string
+  _links:
+    type: object
+    required:
+    - payment
+    properties:
+      payment:
+        type: object
+        required:
+        - href
+        properties:
+          href:
+            type: string
+            pattern: "^(.*)$"

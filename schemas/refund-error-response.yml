@@ -1,0 +1,14 @@
+type: object
+required:
+- request_id
+- error_type
+- error_codes
+properties:
+  request_id:
+    type: string
+  error_type:
+    type: string
+  error_codes:
+    type: array
+    items:
+      type: string
