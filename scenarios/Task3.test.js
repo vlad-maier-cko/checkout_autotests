@@ -54,10 +54,7 @@ describe("Test a different flow of refunding a payment with the Fawry payment me
     .set({ "Authorization": testParameters.authorization })
     .send({ "amount": testParameters.paymentBody.amount+1 });
     expect(response.status).to.eql(422);
-    expect(response.body).to.have.property("request_id");
-    expect(response.body).to.have.property("error_type");
-    expect(response.body).to.have.property("error_type");
-
+    expect(response.body).to.have.all.keys("request_id", "error_type", "error_type");
     
     console.log("Check to refund the payment");
     const response1 = await request
@@ -65,9 +62,7 @@ describe("Test a different flow of refunding a payment with the Fawry payment me
     .set({ "Authorization": testParameters.authorization });
   
     expect(response1.status).to.eql(202);
-    expect(response1.body).to.have.property("action_id");
-    expect(response1.body).to.have.property("_links");
-    expect(response1.body._links).to.have.property("payment");
-    expect(response1.body._links.payment).to.have.property("href");
+    expect(response1.body).to.have.all.keys("action_id", "_links");
+    expect(response1.body).to.have.nested.property("_links.payment.href");
   });
 });
