@@ -1,0 +1,43 @@
+type: object
+required:
+- id
+- status
+- customer
+- _links
+properties:
+  id:
+    type: string
+    pattern: "^(.*)$"
+  status:
+    type: string
+    pattern: "^(.*)$"
+  customer:
+    type: object
+    required:
+      - id
+    properties:
+      id:
+        type: string
+        pattern: "^(.*)$"
+  _links:
+    type: object
+    required:
+      - self
+      - redirect
+    properties:
+      self:
+        type: object
+        required:
+        - href
+        properties:
+          href:
+            type: string
+            pattern: "^(.*)$"
+      redirect:
+        type: object
+        required:
+        - href
+        properties:
+          href:
+            type: string
+            pattern: "^(.*)$"

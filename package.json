@@ -15,7 +15,9 @@
     "chai": "^4.3.4",
     "chai-json-schema": "^1.5.1",
     "fs": "0.0.1-security",
+    "js-yaml": "^4.1.0",
     "mocha": "^9.1.1",
+    "puppeteer": "^10.2.0",
     "speccy": "^0.11.0",
     "supertest": "^6.1.6",
     "upath": "^2.0.1"

@@ -1,5 +1,5 @@
 var testParameters = require("../environment/TestParameters");
-const request = require("supertest")(testParameters.mainURL);
+const request = require("supertest")(testParameters.fawryURL);
 var chai = require("chai");
 chai.use(require("chai-json-schema"));
 var expect = chai.expect;
@@ -24,7 +24,7 @@ module.exports = {
         const response = await request
         .post("/payments")
         .set({ "Authorization": testParameters.authorization, "Content-Type": testParameters.contentType })
-        .send(testParameters.paymentBody)
+        .send(testParameters.paymentBodyFawry)
         .expect(202);
 
         var expectedSchema = await getSchema("create-payment-response");

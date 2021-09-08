@@ -1,8 +1,11 @@
 {
-    "mainURL": "https://api.sandbox.checkout.com",
+    "fawryURL": "https://api.sandbox.checkout.com",
+    "qpayURL": "https://api.sandbox.checkout.com",
+
     "authorization": "sk_test_a908e452-dd30-4e7a-85ba-d7410e956531",
+
     "contentType": "application/json",
-    "paymentBody": {
+    "paymentBodyFawry": {
       "amount": 200,
       "currency": "EGP",
       "source": {
@@ -19,5 +22,18 @@
           }
         ]
       }
-    }
+    },
+    "paymentBodyQPay": {
+      "amount": 237,
+      "currency": "QAR",
+      "source": {
+        "type": "qpay",
+        "language": "en",
+        "description": "QPay Demo Payment",
+        "quantity": 2
+      }
+    },
+    "cardNumber": "4215375500883243",
+    "cardMonth": "06",
+    "cardYear": "24"
 }
