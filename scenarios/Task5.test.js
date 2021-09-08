@@ -28,21 +28,16 @@ describe("Test creates and finalizes a QPay payment", function () {
 
             await page.waitForNavigation();
 
-                await page.evaluate(() => {
-                    writePINDial ('1');
-                    writePINDial ('2');
-                    writePINDial ('3');
-                    writePINDial ('4');
-                });
-
+            for(var i=0; i<4; i++)
+                await page.mouse.click(500, 200);
             page.click("#pay");
+
             await page.waitForNavigation();
 
-            page.on('console', (msg) => console.log('PAGE LOG:', msg.text()));
+            page.click('input[name="Continue"]');
 
-await page.evaluate(() => console.log(`url is ${location.href}`));
-
-            await page.screenshot({ path: 'screenshot.png' });
+            await page.waitForNavigation();
+            await page.waitForNavigation();
 
             await browser.close();
           })();
