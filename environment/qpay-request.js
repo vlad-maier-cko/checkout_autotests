@@ -31,7 +31,18 @@ module.exports = {
 
         expect(response.body).to.be.jsonSchema(expectedSchema);
         expect(response.body.status).to.eql("Pending");
-        console.log(response.body.id);
-        return response.body._links.redirect.href;
+
+        return response.body;
+    },
+    getPaymentDetails: async function(paymentID){
+        const responseGet = await request
+        .get("/payments/"+paymentID)
+        .set({ "Authorization": testParameters.authorization, "Content-Type": testParameters.contentType })
+        .expect(200);
+
+        var expectedSchemaGet = await getSchema("get-payment-response-qpay");
+
+        console.log("Status: "+responseGet.body.status)
+        expect(responseGet.body).to.be.jsonSchema(expectedSchemaGet);
     }
 };

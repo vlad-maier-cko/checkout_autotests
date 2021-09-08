@@ -1,0 +1,108 @@
+type: object
+required:
+- id
+- requested_on
+- source
+- amount
+- currency
+- payment_type
+- status
+- approved
+- risk
+- customer
+- _links
+properties:
+    id:
+      type: string
+    requested_on:
+      type: string
+    source:
+      type: object
+      required:
+      - type
+      - description
+      - qpay_status
+      - status_message
+      - confirmation_id
+      - pun
+      - card_number
+      properties:
+        type:
+          type: string
+        description:
+          type: string
+        qpay_status:
+          type: string
+        status_message:
+          type: string
+        confirmation_id:
+          type: string
+        pun:
+          type: string
+        card_number:
+          type: string
+    amount:
+      type: integer
+    currency:
+      type: string
+    payment_type:
+      type: string
+    status:
+      type: string
+      pattern: "^(.*)$"
+    approved:
+      type: boolean
+    risk:
+      type: object
+      required:
+      - flagged
+      properties:
+        flagged:
+          type: boolean
+    customer:
+      type: object
+      required:
+      - id
+      properties:
+        id:
+          type: string
+    _links:
+      type: object
+      required:
+      - self
+      - redirect
+      - actions
+      - refund
+      properties:
+        self:
+          type: object
+          required:
+          - href
+          properties:
+            href:
+              type: string
+              pattern: "^(.*)$"
+        redirect:
+          type: object
+          required:
+          - href
+          properties:
+            href:
+              type: string
+              pattern: "^(.*)$"
+        actions:
+          type: object
+          required:
+          - href
+          properties:
+            href:
+              type: string
+              pattern: "^(.*)$"
+        refund:
+          type: object
+          required:
+          - href
+          properties:
+            href:
+              type: string
+              pattern: "^(.*)$"
